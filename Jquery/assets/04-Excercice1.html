@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercice 1 en JQ!</title>
+</head>
+<body>
+    <form id="MonFormulaire"> <!--by default send to the by default php site-->
+        <input type="text" required placeholder="Nom et Prenom" id="nomcomplet">
+        <input type="submit" value="Je Valide">
+
+    </form> 
+<!--consigne: avec l'aide -->
+<!--Integration de la librairie jQuery-->
+    <script
+        src="http://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script>
+            //in the bracket on(),choose the type of the called balise 
+        $("#MonFormulaire").on("submit",function(event){
+            // cette fonction anonyme sera excute a la soumission du formulaire.
+            // permet d'annuler l'ation par default du submit du formulaire.
+            event.preventDefault();
+            $(this).replaceWith('<p>Bonjour '+$('#nomcomplet').val()+'!</p>');
+            // replacewith can replace with a whole element, here you could define the paragraphe and others. value()
+    })    
+    ;
+        
+    </script>
+
+</body>
+</html>
