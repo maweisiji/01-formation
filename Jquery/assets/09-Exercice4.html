@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercice 4</title>
+    
+</head>
+<body>
+    <form id='MonFormulaire' method='post' action='connexion.php'>
+        Email    <input type='text' name='email' placeholder='Email'><br/><br/>
+        Password <input type='text' name='mdp' placholder='Mot de passe'><br/><br/>
+        <input type='button' id='submit' value='Submit'>
+    </form>
+
+    <!--CONSIGNE:avec l'aide de jQuery, vous devrez:
+        1. A l'aide d'une API de geolocalisation, vous affichez dans un paragraphe du formulaire 
+        l'address IP ainsi que la ville et/ou code postal de l'utilisateur connecte.
+        // utilisation de JSONP: geoip.nekudo.com ou ip-api.com
+    -->
+
+    <!--jquery-->
+    <!--<p><button onclick="geoFindMe()">Show my location</button></p>
+    <div id="out"></div>-->
+
+     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+
+    <!--DOM is ready!-->
+    <script>
+        $(function() {
+            // 1. Une requete Ajax Simple
+            $.ajax('http://geoip.nekudo.com/api').done(function(resultat){
+                console.log(resultat);
+            });
+            // 2. avec JSON
+            $.getJSON('http://ip-api.com/json/?callback=',function(resultat){
+                console.log(resultat);
+                // Affichage sur ma page
+                $('<p>').text('votre IP est surveillee:'+resultat.query+''+resultat.isp).css({'background':'yellow','color':'red'}).appendTo($('form'));
+            });
+        });
+    </script>
+    <!--Ma facon
+    <script src="http://geoip.nekudo.com/api?callback=foo"></script>
+    
+    <script>
+    function foo(data) {
+        document.write("Ville: ", data.city,'<br/>');
+        document.write("IP address: ", data.ip);
+
+    }
+    </script>-->
+
+</body>
+</html>
